@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Vishnu Jewels — Black & Gold Luxury */
+    --background: 0 0% 4%;
+    --foreground: 40 30% 92%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 40 30% 92%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 30% 92%;
+
+    --primary: 42 65% 52%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 40 30% 92%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 10% 65%;
+
+    --accent: 42 80% 60%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 40 30% 92%;
+
+    --border: 42 25% 18%;
+    --input: 0 0% 12%;
+    --ring: 42 65% 52%;
+
+    --radius: 0.25rem;
+
+    /* Brand tokens */
+    --gold: 42 65% 52%;
+    --gold-light: 45 85% 70%;
+    --gold-deep: 38 70% 38%;
+    --gold-foil: 45 90% 78%;
+    --ink: 0 0% 4%;
+    --ink-soft: 0 0% 9%;
+
+    --gradient-gold: linear-gradient(135deg, hsl(38 70% 38%) 0%, hsl(45 85% 70%) 50%, hsl(42 65% 52%) 100%);
+    --gradient-gold-text: linear-gradient(180deg, hsl(45 90% 78%) 0%, hsl(42 65% 52%) 50%, hsl(38 70% 38%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 8%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 4% / 0.3) 0%, hsl(0 0% 4% / 0.85) 70%, hsl(0 0% 4%) 100%);
+
+    --shadow-gold: 0 20px 60px -20px hsl(42 65% 52% / 0.35);
+    --shadow-deep: 0 30px 80px -20px hsl(0 0% 0% / 0.8);
+    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.6);
+
+    --transition-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse at top, hsl(42 65% 52% / 0.06), transparent 60%),
+      radial-gradient(ellipse at bottom, hsl(42 65% 52% / 0.03), transparent 50%);
+  }
+}
+
+@layer components {
+  .font-display { font-family: 'Cormorant Garamond', serif; }
+  .font-sans { font-family: 'Inter', system-ui, sans-serif; }
+
+  .text-gold-gradient {
+    background: var(--gradient-gold-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-gold-gradient { background: var(--gradient-gold); }
+
+  .border-gold { border-color: hsl(var(--gold) / 0.5); }
+
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.6), transparent);
+  }
+
+  .hairline {
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .luxe-card {
+    @apply bg-card border border-border/60 transition-all duration-500;
+    box-shadow: var(--shadow-card);
+  }
+  .luxe-card:hover {
+    border-color: hsl(var(--gold) / 0.6);
+    box-shadow: var(--shadow-gold);
+    transform: translateY(-4px);
+  }
+
+  .shimmer {
+    background: linear-gradient(110deg, transparent 30%, hsl(var(--gold) / 0.15) 50%, transparent 70%);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+}
+
+@layer utilities {
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes float-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--gold) / 0.5); }
+    50% { box-shadow: 0 0 0 14px hsl(var(--gold) / 0); }
+  }
+  .animate-fade-up { animation: fade-up 0.9s var(--transition-luxe) both; }
+  .animate-fade-in { animation: fade-in 1.2s ease-out both; }
+  .animate-float-soft { animation: float-soft 4s ease-in-out infinite; }
+  .animate-pulse-gold { animation: pulse-gold 2s infinite; }
+}
